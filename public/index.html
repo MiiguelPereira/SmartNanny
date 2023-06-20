@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ESP IoT Firebase App</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+  <script>
+    // REPLACE WITH YOUR web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC3hp95yxvbmMSQFeBQrGDkhkLRbnb5ZBE",
+      authDomain: "cadastrosensores.firebaseapp.com",
+      databaseURL: "https://cadastrosensores-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "cadastrosensores",
+      storageBucket: "cadastrosensores.appspot.com",
+      messagingSenderId: "381047561419",
+      appId: "1:381047561419:web:34d73abc3d58dba2a58f4e"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
+  </script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <!--TOP BAR-->
+  <div class="topnav">
+    <h1>SmartNanny <i class="fas fa-clipboard-list"></i></h1>
+  </div>
+
+  <!--AUTHENTICATION BAR (USER DETAILS/LOGOUT BUTTON)-->
+  <div id="authentication-bar" style="display: none;">
+    <p>
+      <span id="authentication-status">Usuário Logado</span>
+      <span id="user-details">USEREMAIL</span>
+      <a href="/" id="logout-link">(sair)</a>
+    </p>
+  </div>
+
+  <!--LOGIN FORM-->
+  <form id="login-form" style="display: none;">
+    <div class="container">
+      <div class="mb-3">
+        <label for="input-email" class="form-label"><b>Email</b></label>
+        <input type="text" class="form-control" placeholder="Enter Username" id="input-email" required>
+      </div>
+      <div class="mb-3">
+        <label for="input-password" class="form-label"><b>Password</b></label>
+        <input type="password" class="form-control" placeholder="Enter Password" id="input-password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+      <p id="error-message" style="color:red;"></p>
+    </div>
+  </form>
+
+  <!--CONTENT (SENSOR READINGS)-->
+  <div class="container" id="content-sign-in" style="display: none;">
+    <div class="row">
+      <!--TEMPERATURE-->
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-thermometer-half" style="color:#059e8a;"></i> TEMPERATURA</h5>
+            <p class="card-text"><span class="reading"><span id="temp"></span> &deg;C</span></p>
+          </div>
+        </div>
+      </div>
+      <!--HUMIDITY-->
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-tint" style="color:#00add6;"></i> HUMIDADE</h5>
+            <p class="card-text"><span class="reading"><span id="hum"></span> &percnt;</span></p>
+          </div>
+        </div>
+      </div>
+      <!--SOUND-->
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-angle-double-down" style="color:#e1e437;"></i> SOM</h5>
+            <p class="card-text"><span class="reading"><span id="sou"></p>
+          </div>
+        </div>
+      </div>
+      <!--MOVEMENT-->
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-angle-double-down" style="color:#e1e437;"></i> MOVIMENTO</h5>
+            <p class="card-text"><span class="reading"><span id="mov"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
